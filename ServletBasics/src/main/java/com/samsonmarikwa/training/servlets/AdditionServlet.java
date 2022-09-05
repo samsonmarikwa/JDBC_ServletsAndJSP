@@ -17,7 +17,7 @@ public class AdditionServlet extends GenericServlet {
 			int num2 = Integer.parseInt(request.getParameter("number2"));
 
 			PrintWriter out = response.getWriter();
-			out.println("The result is " + num1 + num2);
+			out.println("The result is " + (num1 + num2));
 		}
 
 	}

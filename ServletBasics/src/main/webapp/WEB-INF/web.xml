@@ -21,4 +21,12 @@
 		<servlet-name>HelloServlet</servlet-name>
 		<url-pattern>/hello</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>AdditionServlet</servlet-name>
+		<servlet-class>com.samsonmarikwa.training.servlets.AdditionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdditionServlet</servlet-name>
+		<url-pattern>/additionServlet</url-pattern>
+	</servlet-mapping>
 </web-app>
