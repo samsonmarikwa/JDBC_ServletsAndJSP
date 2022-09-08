@@ -1,10 +1,5 @@
 package com.samsonmarikwa.user.servlets;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -16,17 +11,23 @@ import java.sql.Statement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@WebServlet("/readServlet")
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 public class ReadUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Logger logger = LoggerFactory.getLogger(ReadUserServlet.class);
 	private Connection connection;
 	
-	public void init() {
+	public void init(ServletConfig config) {
 		logger.info("init() started");
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/mydb", "root", "P@ssW0rd");
+			connection = DriverManager.getConnection(
+					config.getInitParameter("dbUrl"), config.getInitParameter("dbUser"), config.getInitParameter("dbPassword"));
 		} catch (SQLException | ClassNotFoundException e) {
 			logger.error(e.getMessage());
 		}
