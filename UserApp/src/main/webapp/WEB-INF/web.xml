@@ -19,4 +19,24 @@
     <servlet-name>CreateUserServlet</servlet-name>
     <url-pattern>/CreateUserServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateUserServlet</display-name>
+    <servlet-name>UpdateUserServlet</servlet-name>
+    <servlet-class>com.samsonmarikwa.user.servlets.UpdateUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateUserServlet</servlet-name>
+    <url-pattern>/UpdateUserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteUser</display-name>
+    <servlet-name>DeleteUser</servlet-name>
+    <servlet-class>com.samsonmarikwa.user.servlets.DeleteUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteUser</servlet-name>
+    <url-pattern>/DeleteUser</url-pattern>
+  </servlet-mapping>
 </web-app>
