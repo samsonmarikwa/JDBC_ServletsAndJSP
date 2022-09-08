@@ -7,11 +7,13 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Enumeration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,10 +26,19 @@ public class ReadUserServlet extends HttpServlet {
 	
 	public void init(ServletConfig config) {
 		logger.info("init() started");
+
 		try {
+			ServletContext context = config.getServletContext();
+			
+			Enumeration<String> parameterNames = context.getInitParameterNames();
+			while (parameterNames.hasMoreElements()) {
+				String element = parameterNames.nextElement();
+				System.out.println("Context Param: " + element + ", Value: " + context.getInitParameter(element));		
+			}
+			
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			connection = DriverManager.getConnection(
-					config.getInitParameter("dbUrl"), config.getInitParameter("dbUser"), config.getInitParameter("dbPassword"));
+					context.getInitParameter("dbUrl"), context.getInitParameter("dbUser"), context.getInitParameter("dbPassword"));
 		} catch (SQLException | ClassNotFoundException e) {
 			logger.error(e.getMessage());
 		}
