@@ -1,6 +1,8 @@
 package com.samsonmarikwa.user.servlets;
 
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,19 +14,24 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-@WebServlet("/addServlet")
+@WebServlet(urlPatterns = "/addServlet", initParams = {
+		@WebInitParam(name = "dbUrl", value = "jdbc:mysql://localhost/mydb"),
+		@WebInitParam(name = "dbUser", value = "root"),
+		@WebInitParam(name = "dbPassword", value = "P@ssW0rd")
+})
 public class CreateUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Connection connection;
 
-	public void init() {
+	public void init(ServletConfig config) {
 		try {
 			// Before Java6 Service Provider Mechanism we had to load the driver class. This
 			// is required for Tomcat as
 			// this the auto-loading of the class is disabled due to memory leaks and we are
 			// required to load the class manually.
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/mydb", "root", "P@ssW0rd");
+			connection = DriverManager.getConnection(
+					config.getInitParameter("dbUrl"), config.getInitParameter("dbUser"), config.getInitParameter("dbPassword"));
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
