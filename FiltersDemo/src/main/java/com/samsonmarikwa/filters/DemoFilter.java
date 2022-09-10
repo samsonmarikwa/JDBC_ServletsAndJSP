@@ -28,5 +28,4 @@ public class DemoFilter extends HttpFilter {
 	public void init(FilterConfig config) throws ServletException {
 		// TODO Auto-generated method stub
 	}
-
 }

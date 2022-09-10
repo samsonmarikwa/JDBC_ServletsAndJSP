@@ -14,6 +14,4 @@ public class FilterServletDemo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("From the servlet\n");
 	}
-
-
 }
