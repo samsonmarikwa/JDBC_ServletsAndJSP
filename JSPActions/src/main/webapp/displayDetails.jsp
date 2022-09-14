@@ -21,5 +21,9 @@
 	Description: <jsp:getProperty property="description" name="product"/>
 	<br />
 	Price: <jsp:getProperty property="price" name="product"/>
+	<br/>
+	Server Version: <%= application.getServerInfo() %>
+	Servlet Version: <%= application.getMajorVersion() %>, <%= application.getMinorVersion() %>
+	JSP Version: <%= JspFactory.getDefaultFactory().getEngineInfo().getSpecificationVersion() %>
 </body>
 </html>
