@@ -26,4 +26,7 @@
     <!--
     <Manager pathname="SESSIONS.ser" />
     -->
+    
+    <Resource name="myds" auth="Container" type="javax.sql.DataSource" driverClassName="com.mysql.cj.jdbc.Driver" url="jdbc:mysql://localhost/mydb" username="root" password="P@ssW0rd" />
+    
 </Context>
